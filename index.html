@@ -30,6 +30,17 @@
 
 <h1>MNSC ROUTES AND SCHEDULES</h1>
 
+<div id="ct-clock" style="
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    background:#e6f2ff;
+    border:2px solid #7ea3cc;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:20px;">
+</div>
+
 <table>
   <tr>
     <th>Route</th>
@@ -113,6 +124,28 @@ Our intention is to accommodate our customer's needs whenever possible.
 ³Local LTL Carrier N&amp;M Transfer cut-off time is 3:30 CT,
 LTL Carrier Magnum is 5:00 CT.
 </p>
+<script>
+function updateCTTime() {
+    const now = new Date();
 
+    const ctTime = now.toLocaleString("en-US", {
+        timeZone: "America/Chicago",
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    document.getElementById("ct-clock").innerHTML =
+        "Current Central Time: " + ctTime + " CT";
+}
+
+updateCTTime();
+setInterval(updateCTTime, 1000);
+</script>
 </body>
 </html>
